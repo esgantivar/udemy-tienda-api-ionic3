@@ -20,7 +20,7 @@ Crear superusuario para acceder al administrador (http://localhost:8000/admin)
 $ python manage.py createsuperuser
 ```
 
-Cargar datos de prueba
+Cargar datos de prueba (Lineas y Productos)
 ```
 $ python manage.py loaddata < data.json
 ```
