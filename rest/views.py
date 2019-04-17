@@ -81,9 +81,7 @@ class OrderView(AuthView):
     def get(self, request, order_id):
         order = Orden.objects.filter(id=order_id).first()
         if order:
-            return JsonResponse({
-                'id': order.id
-            }, status=200)
+            return JsonResponse(order.to_dict, status=200)
         else:
             return JsonResponse({
             }, status=404)

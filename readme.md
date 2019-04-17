@@ -35,7 +35,19 @@ Correr el servidor
 $ python manage.py runserver
 ```
 
-```
-VERBO|RUTA|DESCRIPCIÓN
-GET| lineas | Obtiene todas las lineas (categorias) disponibles
-```
+### Servicios Disponibles
+
+VERBO | RUTA | DESCRIPCIÓN
+:---| :--- | :---
+POST | login | Obtiene un JWT (JSON Web Token), espera un objeto dentro del body del request así:  ```{"username": username, "password": 123456}```
+GET | lineas | Obtiene todas las lineas (categorias) disponibles
+GET | productos/todos/:pagina | Obtiene todos los productos disponibles, dada la pagina (por defecto entrega la pagina 1)
+GET | productos/:tipo/:pagina | Obtiene todos los productos dada una categoria paginada
+GET | productos/buscar/:termino | Hace una busqueda de los productos que contengan el termino enviado (ignora mayusculas y minusculas)
+POST | orden | crea una orden asociada a el usuario autenticado, recibe dentro del body del request un objeto asi: ```{"items": [...codigos]}```
+GET | orden/:id | Obtiene la orden y su detalle
+DELETE |orden/:id | Elimina la orden identificada con el id dado y sus detalles
+GET | orden/todas | Obtiene todas las ordenes asociadas al usuario autenticado
+
+
+> A excepción de la ruta del login, las rutas disponibles se encuentran protegidas por autenticación, para realizar peticiones se debe firmar la mismma agregando el HEADER `Authentication` y en su valor asignarlo asi `Bearer {JWT entregado por el servicio de login}`
