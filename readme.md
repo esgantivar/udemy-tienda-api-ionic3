@@ -20,6 +20,11 @@ Crear superusuario para acceder al administrador (http://localhost:8000/admin)
 $ python manage.py createsuperuser
 ```
 
+Cargar datos de prueba
+```
+$ python manage.py loaddata < data.json
+```
+
 Correr el servidor
 ```
 $ python manage.py runserver
