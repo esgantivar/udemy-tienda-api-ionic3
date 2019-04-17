@@ -10,6 +10,11 @@ Activar virtual environment
 $ source venv/bin/activate 
 ```
 
+Instalar los paquetes
+```
+$ pip install -r requirements.txt
+```
+
 Aplicar las migraciones de la base de datos
 ```
 $ python manage.py migrate
