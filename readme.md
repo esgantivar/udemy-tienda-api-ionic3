@@ -34,3 +34,8 @@ Correr el servidor
 ```
 $ python manage.py runserver
 ```
+
+```
+VERBO|RUTA|DESCRIPCIÓN
+GET| lineas | Obtiene todas las lineas (categorias) disponibles
+```
