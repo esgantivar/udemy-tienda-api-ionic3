@@ -27,7 +27,7 @@ $ python manage.py createsuperuser
 
 Cargar datos de prueba (Lineas y Productos)
 ```
-$ python manage.py loaddata < data.json
+$ python manage.py loaddata data.json
 ```
 
 Correr el servidor
