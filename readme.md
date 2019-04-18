@@ -52,4 +52,4 @@ GET | orden/todas | Obtiene todas las ordenes asociadas al usuario autenticado
 
 > Las rutas relacionadas con ordenes se encuentran protegidas con autenticación, para realizar peticiones autenticadas se debe firmar la mismma agregando el HEADER `Authentication` y en su valor asignarlo asi `Bearer {JWT entregado por el servicio de login}`
  
-[Link aplicación Ionic 3](https://github.com/esgantivar/udemy-tienda-api-ionic3)
+[Link aplicación Ionic 3](https://github.com/esgantivar/udemy-tienda-app)
