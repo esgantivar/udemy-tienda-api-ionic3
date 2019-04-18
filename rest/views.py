@@ -22,7 +22,7 @@ class AuthView(JSONWebTokenAuthMixin, BaseView):
     pass
 
 
-class LineasView(AuthView):
+class LineasView(BaseView):
     def get(self, request):
         lineas = list(Linea.objects.all().values('id', 'linea', 'icono'))
         return JsonResponse(lineas, status=200, safe=False)
@@ -37,22 +37,22 @@ class ProductsView(BaseView):
             return JsonResponse([], safe=False)
 
 
-class ProductByCategoryView(AuthView):
+class ProductByCategoryView(BaseView):
     def get(self, request, tipo, page=1):
         linea = Linea.objects.filter(id=tipo).first()
         if linea:
-            p = Paginator(list(Producto.objects.filter(fk_linea_id=tipo).values('codigo', 'producto')), 10)
+            p = Paginator(list(Producto.objects.filter(fk_linea_id=tipo)), 10)
             if page <= p.num_pages:
-                return JsonResponse(p.page(page).object_list, safe=False)
+                return JsonResponse([item.to_dict for item in p.page(page).object_list], safe=False)
             else:
                 return JsonResponse([], safe=False)
         else:
             return JsonResponse({'message': ''}, status=400)
 
 
-class ProductSearchView(AuthView):
+class ProductSearchView(BaseView):
     def get(self, request, term=''):
-        return JsonResponse(list(Producto.objects.filter(producto__icontains=term).values('codigo', 'producto')),
+        return JsonResponse([p.to_dict for p in Producto.objects.filter(producto__icontains=term)],
                             safe=False)
 
 
