@@ -12,10 +12,14 @@ from rest.models import Producto, Linea, Orden, DetalleOrden
 from api.settings import SITE_URL
 
 
-class AuthView(JSONWebTokenAuthMixin, View):
+class BaseView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+
+class AuthView(JSONWebTokenAuthMixin, BaseView):
+    pass
 
 
 class LineasView(AuthView):
@@ -24,11 +28,11 @@ class LineasView(AuthView):
         return JsonResponse(lineas, status=200, safe=False)
 
 
-class ProductsView(AuthView):
+class ProductsView(BaseView):
     def get(self, request, page=1):
-        p = Paginator(list(Producto.objects.all().values('codigo', 'producto')), 10)
+        p = Paginator(list(Producto.objects.all()), 10)
         if page <= p.num_pages:
-            return JsonResponse(p.page(page).object_list, safe=False)
+            return JsonResponse([item.to_dict for item in p.page(page).object_list], safe=False)
         else:
             return JsonResponse([], safe=False)
 
