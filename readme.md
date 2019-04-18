@@ -50,4 +50,6 @@ DELETE |orden/:id | Elimina la orden identificada con el id dado y sus detalles
 GET | orden/todas | Obtiene todas las ordenes asociadas al usuario autenticado
 
 
-> A excepción de la ruta del login, las rutas disponibles se encuentran protegidas por autenticación, para realizar peticiones se debe firmar la mismma agregando el HEADER `Authentication` y en su valor asignarlo asi `Bearer {JWT entregado por el servicio de login}`
+> Las rutas relacionadas con ordenes se encuentran protegidas con autenticación, para realizar peticiones autenticadas se debe firmar la mismma agregando el HEADER `Authentication` y en su valor asignarlo asi `Bearer {JWT entregado por el servicio de login}`
+
+> [Link aplicación Ionic 3](https://github.com/esgantivar/udemy-tienda-api-ionic3)
